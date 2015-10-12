@@ -459,7 +459,7 @@ void ReplicatedPG::block_write_on_full_cache(
   const hobject_t oid = _oid.get_head();
   dout(20) << __func__ << ": blocking object " << oid
 	   << " on full cache" << dendl;
-  assert(objects_blocked_on_cache_full.count(oid) == 0);
+  //assert(objects_blocked_on_cache_full.count(oid) == 0);
   objects_blocked_on_cache_full.insert(oid);
   waiting_for_cache_not_full.push_back(op);
 }
