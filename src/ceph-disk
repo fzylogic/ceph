@@ -969,7 +969,7 @@ def update_partition(action, dev, description):
      # On RHEL and CentOS distros, calling partprobe forces a reboot of the
      # server. Since we are not resizing partitons so we rely on calling
      # partx
-     if platform_distro().startswith(('centos', 'red', 'scientific')):
+     if action == '-u' or platform_distro().startswith(('centos', 'red', 'scientific')):
          LOG.info('calling partx on %s device %s', description, dev)
          LOG.info('re-reading known partitions will display errors')
          command(
@@ -1357,6 +1357,7 @@ def prepare_dev(
                     data,
                 ],
             )
+        update_partiton('-u', data, 'prepared')
         except subprocess.CalledProcessError as e:
             raise Error(e)
 
